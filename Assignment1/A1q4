@@ -1,0 +1,17 @@
+let rec selsort l = https://www.facebook.com/#
+
+  let rec maxhelper(item, lst) =
+    match lst with
+      | [] -> item
+      | (x::xs) -> if (x > item) then maxhelper(x, xs)
+                    else maxhelper(item, xs)
+
+  let rec remove(item, lst) = 
+    match lst with
+        | ([]) -> lst
+        | (x::xs) -> if (item = x) then remove(item, xs)
+                        else x::(remove(item,xs))
+
+  match l with
+    | [] -> []
+    | (x::xs) -> maxhelper(x,xs)::selsort(remove(maxhelper(x,xs),l))

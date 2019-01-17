@@ -1,0 +1,28 @@
+module hw1_solve
+
+let rec split l = 
+    let rec helper list newListA newListB =
+        match list with
+            |[] -> (newListA,newListB)
+            |[x] -> (x::newListA, newListB)
+            |x0::x1::xs -> helper xs (x0::newListA) (x1::newListB)
+    helper l [] []
+
+
+let rec merge twolists = 
+    match twolists with
+        |(x,[]) -> x
+        |([], y) -> y
+        |(x::xs, y::ys) -> 
+            if x <= y then x::merge(xs,y::ys)
+            else y::merge(x::xs, ys)
+    
+let rec mergesort l = 
+    match l with
+        | [] -> []
+        | (n::[]) -> n::[] (* Without this you will go into an infinite loop. *)
+        | n::ns -> 
+            let (l1,l2) = split l 
+            merge (mergesort l1, mergesort l2)
+
+mergesort([4;5;1;8;2;35;7])

@@ -1,0 +1,10 @@
+let findMax l = 
+  let rec helper(l,m) = 
+    match l with 
+      | [] -> m
+      | (x::xs) -> if (x > m) then helper(xs, x)
+                    else helper(xs,m)
+
+  match l with
+  | [] -> failwith "Error -- empty list"
+  | (x::xs) -> helper(xs,x)

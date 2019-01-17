@@ -1,0 +1,14 @@
+let rec sumlist l = 
+  match l with
+  | ([]) -> 0
+  | (x::xs) -> x + sumlist(xs)
+
+let rec pairlists twolists =
+  match twolists with
+    | ([],[]) -> []
+    | ([],x::xs) -> failwith "Error -- lists are not of the same length"
+    | (x::xs, []) -> failwith "Error -- lists are not of the same length"
+    | (x::xs, y::ys) -> (x*y)::pairlists(xs,ys)
+
+let w_mean weights data =  
+    sumlist(pairlists(data,weights))/sumlist(weights)

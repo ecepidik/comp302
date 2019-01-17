@@ -1,0 +1,20 @@
+let rec common twolists = 
+    let rec memberof pair = 
+        match pair with
+            |(m,[]) -> false
+            |(m,(x::xs)) -> if (m = x) then true
+                            else (memberof(m,xs))
+    let rec remove(list) = 
+        match list with
+            | ([]) -> list
+            | (x::xs) -> if ((memberof(x, xs)) = true) then remove(xs)
+                         else (x::(remove(xs)))
+                        
+    let rec helper(l1,l2) = 
+        match l1 with
+            |[] -> []
+            |(x::xs) -> if ((memberof(x, l2)) = true) then x::helper(xs,l2)
+                        else helper(xs,l2)
+    remove(helper(twolists))
+
+common([1;2;3;6;3;4],[5;6;3])

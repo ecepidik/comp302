@@ -1,0 +1,12 @@
+let rec memberof pair = 
+  match pair with
+    | (m, []) -> false
+    | (m,(x::xs)) -> if(m=x) then true
+                      else (memberof (m, xs))
+
+
+let rec remove(item, lst) = 
+    match lst with
+        | ([]) -> lst
+        | (x::xs) -> if (item = x) then remove(item, xs)
+                        else x::(remove(item,xs))
